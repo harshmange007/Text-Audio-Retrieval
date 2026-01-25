@@ -1,0 +1,31 @@
+# Core
+numpy
+scipy
+pandas
+tqdm
+
+# Audio processing
+librosa
+soundfile
+audioread
+
+# Deep learning
+torch
+torchaudio
+tensorflow
+tensorflow-hub
+
+# Embeddings / NLP
+sentence-transformers
+transformers
+
+# Vector database
+faiss-cpu
+
+# Evaluation & plotting
+scikit-learn
+matplotlib
+seaborn
+
+# Utilities
+pyyaml
