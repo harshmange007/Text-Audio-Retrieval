@@ -1,12 +1,14 @@
+import matplotlib.pyplot as plt
+import numpy as np
 from collections import Counter
 from sklearn.metrics import confusion_matrix
 
-# FAISS-based query functions
 from query.query_prototype import query as proto_query
 from query.query_linear_projection import query as proj_query
 from query.query_contrastive import query as contrastive_query
 
 LABEL_MAP = {"drums": 0, "keys": 1}
+LABELS = ["drums", "keys"]
 
 EVAL_QUERIES = [
     ("drum samples", "drums"),
@@ -14,7 +16,6 @@ EVAL_QUERIES = [
     ("percussion beat", "drums"),
     ("kick snare rhythm", "drums"),
     ("drums only", "drums"),
-
     ("keys melody", "keys"),
     ("piano chords", "keys"),
     ("keyboard harmony", "keys"),
@@ -27,6 +28,30 @@ def predict_class(query_fn, text, top_k=5):
     classes = [r["class"] for r in results]
     return Counter(classes).most_common(1)[0][0]
 
+def save_confusion_matrix(cm, model_name):
+    fig, ax = plt.subplots(figsize=(4, 4))
+    ax.imshow(cm)
+
+    ax.set_xticks(range(2))
+    ax.set_yticks(range(2))
+    ax.set_xticklabels(LABELS)
+    ax.set_yticklabels(LABELS)
+
+    ax.set_xlabel("Predicted")
+    ax.set_ylabel("Actual")
+    ax.set_title(model_name)
+
+    for i in range(2):
+        for j in range(2):
+            ax.text(j, i, cm[i, j], ha="center", va="center", fontsize=12)
+
+    filename = f"{model_name.lower().replace(' ', '_')}_faiss_cm.png"
+    plt.tight_layout()
+    plt.savefig(filename, dpi=200)
+    plt.close()
+
+    print(f"✅ Saved: {filename}")
+
 def evaluate_model(query_fn, model_name):
     y_true, y_pred = [], []
 
@@ -36,22 +61,12 @@ def evaluate_model(query_fn, model_name):
         y_pred.append(LABEL_MAP[pred_class])
 
     cm = confusion_matrix(y_true, y_pred)
-
-    print("\n" + "=" * 55)
-    print(f"{model_name} — FAISS-based Confusion Matrix")
-    print("=" * 55)
-    print("Rows: Actual | Columns: Predicted")
-    print("        drums  keys")
-    print(f"drums   {cm[0][0]:<6} {cm[0][1]}")
-    print(f"keys    {cm[1][0]:<6} {cm[1][1]}")
-    print("=" * 55)
-
-    return cm
+    save_confusion_matrix(cm, model_name)
 
 def main():
-    evaluate_model(proto_query, "Prototype-Based Alignment")
-    evaluate_model(proj_query, "Linear Projection Alignment")
-    evaluate_model(contrastive_query, "Contrastive (Mini-CLAP) Alignment")
+    evaluate_model(proto_query, "Prototype")
+    evaluate_model(proj_query, "Linear Projection")
+    evaluate_model(contrastive_query, "Contrastive")
 
 if __name__ == "__main__":
     main()
