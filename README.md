@@ -145,20 +145,19 @@ Evaluation is performed using **FAISS-based retrieval** (not in-memory similarit
 
 ## 📁 Project Structure
 
+## Project Structure
+
+```text
 audio_text_retrieval/
-│
 ├── data/
-│   ├── drums/                  # Raw drum audio samples
-│   └── keys/                   # Raw keys audio samples
-│
+│   ├── drums/              # Raw drum audio samples
+│   └── keys/               # Raw keys audio samples
 ├── preprocessing/
-│   └── audio_preprocess.py     # Audio loading, resampling, normalization
-│
+│   └── audio_preprocess.py # Audio loading, resampling, normalization
 ├── embeddings/
 │   ├── extract_audio_embeddings.py
-│   ├── saved/                  # Raw audio embeddings, labels, filenames
-│   └── projected/              # Projected embeddings (linear / contrastive)
-│
+│   ├── saved/              # Raw audio embeddings, labels, filenames
+│   └── projected/          # Projected embeddings (linear / contrastive)
 ├── models/
 │   ├── prototype_based/
 │   │   └── prototype_retrieval.py
@@ -171,25 +170,21 @@ audio_text_retrieval/
 │       ├── train.py
 │       ├── export_embeddings.py
 │       └── export_text_projection.py
-│
 ├── indexing/
-│   ├── build_faiss_index.py    # Builds FAISS indices (NumPy-only)
+│   ├── build_faiss_index.py # Builds FAISS indices
 │   └── load_index.py
-│
 ├── query/
 │   ├── query_prototype.py
 │   ├── query_linear_projection.py
 │   └── query_contrastive.py
-│
 ├── evaluation/
 │   └── evaluate_faiss_models.py
-│
 ├── prototype_faiss_cm.png
 ├── linear_projection_faiss_cm.png
 ├── contrastive_faiss_cm.png
-│
 ├── requirements.txt
 └── README.md
+```
 
 
 
