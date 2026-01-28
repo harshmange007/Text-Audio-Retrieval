@@ -43,7 +43,7 @@ We implemented and compared **three different alignment strategies** for text–
 **Idea**:
 - Extract audio embeddings using a pretrained audio model
 - Compute **class prototypes** (mean embeddings) for `drums` and `keys`
-- Route text queries to a class using text embeddings
+- Route text queries to a class using text–text similarity with class labels
 - Retrieve audio samples belonging to that class
 
 **Characteristics**:
@@ -115,7 +115,7 @@ Users can issue queries like:
 
 Evaluation is performed using **FAISS-based retrieval** (not in-memory similarity).
 
-- 10 evaluation queries (5 per class)
+- 36 evaluation queries (18 per class)
 - Top-k retrieval with majority voting
 - Confusion matrices saved as **PNG files in project root**
 
