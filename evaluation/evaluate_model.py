@@ -10,18 +10,57 @@ LABEL_MAP = {"drums": 0, "keys": 1}
 INV_LABEL_MAP = {0: "drums", 1: "keys"}
 
 EVAL_QUERIES = [
+    # -------------------- DRUMS --------------------
     ("drum samples", "drums"),
     ("drum loop", "drums"),
     ("percussion beat", "drums"),
     ("kick snare rhythm", "drums"),
     ("drums only", "drums"),
 
+    ("fast drum pattern", "drums"),
+    ("electronic drum beat", "drums"),
+    ("rhythmic percussion sounds", "drums"),
+    ("heavy kick and snare", "drums"),
+    ("tight drum groove", "drums"),
+
+    # more complex / descriptive
+    ("high energy drum loop for dance music", "drums"),
+    ("percussive rhythm without melody", "drums"),
+    ("looped drum pattern with strong beat", "drums"),
+    ("drum sounds used for rhythm section", "drums"),
+    ("short percussive hits and beats", "drums"),
+
+    # intentionally challenging but still drums
+    ("percussive elements driving the tempo", "drums"),
+    ("rhythm focused loop with no harmonic content", "drums"),
+    ("beat oriented audio sample", "drums"),
+
+    # -------------------- KEYS --------------------
     ("keys melody", "keys"),
     ("piano chords", "keys"),
     ("keyboard harmony", "keys"),
     ("soft piano music", "keys"),
     ("keys loop", "keys"),
+
+    ("melodic piano line", "keys"),
+    ("harmonic keyboard progression", "keys"),
+    ("smooth piano melody", "keys"),
+    ("synth keys pad", "keys"),
+    ("keyboard arpeggio", "keys"),
+
+    # more complex / descriptive
+    ("soft melodic piano chords", "keys"),
+    ("keyboard based harmonic loop", "keys"),
+    ("gentle keys progression with melody", "keys"),
+    ("musical chord progression played on keys", "keys"),
+    ("sustained keyboard tones with harmony", "keys"),
+
+    # intentionally challenging but still keys
+    ("melody driven musical loop", "keys"),
+    ("harmonic content without strong rhythm", "keys"),
+    ("tonal keyboard sounds for background music", "keys"),
 ]
+
 
 def predict_class(retrieve_fn, query, top_k=5):
     results = retrieve_fn(query, top_k=top_k)

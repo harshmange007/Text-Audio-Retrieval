@@ -119,22 +119,22 @@ Evaluation is performed using **FAISS-based retrieval** (not in-memory similarit
 - Top-k retrieval with majority voting
 - Confusion matrices saved as **PNG files in project root**
 
-### Confusion Matrix (all three approaches)
+### Confusion Matrix (contrasitive_faiss)
 
 | Actual \ Predicted | Drums | Keys |
 |--------------------|-------|------|
-| **Drums**          | 5     | 0    |
-| **Keys**           | 1     | 4    |
+| **Drums**          | 18     | 0    |
+| **Keys**           | 5     | 13    |
 
 ### Metrics (identical for all approaches)
 
-- **Accuracy**: 90%
+- **Accuracy**: 86.1%
 - **Drums**
-  - Precision: 83%
+  - Precision: 78%
   - Recall: 100%
 - **Keys**
   - Precision: 100%
-  - Recall: 80%
+  - Recall: 72%
 
 📌 Interpretation:
 - Drums are acoustically distinctive → perfect recall
